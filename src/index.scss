@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg-default: #010309;
+  --color-blue: #58a6ff;
+  --color-border: #30363d;
+  --color-fg-default: #c9d1d9;
+  --color-fg-disabled: #8b949e;
+  --font: "Montserrat", sans-serif;
+  --max-page-width: 1280px;
+
+  font-size: 16px;
+  line-height: 24px;
+  font-family: var(--font);
+}
+
+body {
+  background-color: var(--color-bg-default);
+  color: var(--color-fg-default);
+}
+
+a {
+  color: var(--color-fg-default);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-blue);
+    text-decoration: underline;
+  }
+}
+
+.page {
+  max-width: var(--max-page-width);
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.fg-disabled {
+  color: var(--color-fg-disabled);
+}
