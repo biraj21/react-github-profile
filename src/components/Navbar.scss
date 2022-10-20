@@ -10,7 +10,11 @@
   }
 
   h1 {
-    margin: 0 16px;
+    margin: 0 12px;
     font-weight: 400;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 16px;
   }
 }

@@ -3,8 +3,32 @@ import { ReactComponent as SvgLink } from "../assets/link.svg";
 import { ReactComponent as SvgMapPin } from "../assets/map-pin.svg";
 import { ReactComponent as SvgTwitter } from "../assets/twitter.svg";
 import { ReactComponent as SvgUser } from "../assets/users.svg";
+import Tabs from "../components/Tabs";
 
 export default function UserPage() {
+  const tabs = [
+    {
+      path: "/repos",
+      text: "Repositories",
+      element: <div>Repos</div>,
+    },
+    {
+      path: "/projects",
+      text: "Projects",
+      element: <div>Projects</div>,
+    },
+    {
+      path: "/packages",
+      text: "Packages",
+      element: <div>Packages</div>,
+    },
+    {
+      path: "/stars",
+      text: "Stars",
+      element: <div>Stars</div>,
+    },
+  ];
+
   return (
     <div className="page user-page">
       <div className="user">
@@ -16,7 +40,7 @@ export default function UserPage() {
           />
           <div className="names-wrapper">
             <span className="user__name">Biraj</span>
-            <span className="user__id fg-disabled">briaj21</span>
+            <span className="user__id fg-disabled">biraj21</span>
           </div>
         </div>
 
@@ -48,6 +72,8 @@ export default function UserPage() {
           </span>
         </div>
       </div>
+
+      <Tabs tabs={tabs} />
     </div>
   );
 }

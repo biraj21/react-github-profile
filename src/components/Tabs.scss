@@ -1,0 +1,22 @@
+.tabs {
+  &__links {
+    margin-bottom: 16px;
+    display: flex;
+    overflow: auto;
+
+    a {
+      padding: 8px 16px;
+      border-radius: 6px 6px 0 0;
+      font-weight: 600;
+
+      &.tab-active {
+        border-bottom: 2px solid var(--color-border-active);
+      }
+
+      &:hover {
+        background-color: var(--color-bg-hover);
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -6,8 +6,10 @@
 
 :root {
   --color-bg-default: #010309;
+  --color-bg-hover: #21262d;
   --color-blue: #58a6ff;
   --color-border: #30363d;
+  --color-border-active: #f78166;
   --color-fg-default: #c9d1d9;
   --color-fg-disabled: #8b949e;
   --font: "Montserrat", sans-serif;
@@ -19,6 +21,7 @@
 }
 
 body {
+  min-width: 360px;
   background-color: var(--color-bg-default);
   color: var(--color-fg-default);
 }
@@ -36,7 +39,11 @@ a {
 .page {
   max-width: var(--max-page-width);
   margin: 0 auto;
-  padding: 16px;
+  padding: 16px 32px;
+
+  @media screen and (max-width: 767px) {
+    padding: 16px;
+  }
 }
 
 .fg-disabled {
