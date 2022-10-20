@@ -1,13 +1,12 @@
-import { BrowserRouter } from "react-router-dom";
 import "./App.scss";
 import Navbar from "./components/Navbar";
-import UserPage from "./pages/UserPage";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <UserPage />
+      <Profile />
     </div>
   );
 }

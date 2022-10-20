@@ -1,0 +1,57 @@
+.user {
+  width: 290px;
+
+  &__avatar {
+    width: 290px;
+    border: 2px solid var(--color-border);
+    border-radius: 50%;
+  }
+
+  .names-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0;
+  }
+
+  &__name {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  &__id {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    color: var(--color-fg-disabled);
+    line-height: 24px;
+  }
+
+  &__connections {
+    font-size: 14px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 14px;
+      margin-right: 8px;
+    }
+  }
+
+  &__other-details {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+
+    svg {
+      width: 14px;
+      margin-right: 10px;
+    }
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

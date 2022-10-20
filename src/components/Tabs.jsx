@@ -1,33 +1,32 @@
-import { BrowserRouter, NavLink, Routes, Route, useSearchParams } from "react-router-dom";
+import { useState } from "react";
 import "./Tabs.scss";
 
 export default function Tabs({ tabs }) {
+  const [currentTabIndex, setCurrentTabIndex] = useState(0);
+
+  function handleClick(e, tabIndex) {
+    e.preventDefault();
+    setCurrentTabIndex(tabIndex);
+  }
+
   const activeClassName = "tab-active";
 
   return (
-    <BrowserRouter>
-      <div className="tabs">
-        <div className="tabs__links">
-          {tabs.map((link) => (
-            <NavLink
-              to={link.path}
-              key={link.path}
-              className={({ isActive }) => (isActive ? activeClassName : null)}
-              end
-            >
-              {link.text}
-            </NavLink>
-          ))}
-        </div>
-
-        <div className="tab">
-          <Routes>
-            {tabs.map((tab) => (
-              <Route path={tab.path} key={tab.path} element={tab.element} />
-            ))}
-          </Routes>
-        </div>
+    <div className="tabs">
+      <div className="tabs__links">
+        {tabs.map((tab, i) => (
+          <a
+            href="#"
+            key={i}
+            className={i === currentTabIndex ? activeClassName : null}
+            onClick={(e) => handleClick(e, i)}
+          >
+            {tab.text}
+          </a>
+        ))}
       </div>
-    </BrowserRouter>
+
+      <div className="tab">{tabs[currentTabIndex].element}</div>
+    </div>
   );
 }
