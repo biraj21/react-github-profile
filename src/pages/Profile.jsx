@@ -1,23 +1,25 @@
-import { Book, Layout, Package, Star } from "react-feather";
+import { Book, Layout, Package, Star, Users } from "react-feather";
 import { useParams } from "react-router-dom";
 import "./Profile.scss";
 import Loader from "../components/Loader";
 import Repo from "../components/Repo";
 import Tabs from "../components/Tabs";
+import UserCard from "../components/UserCard";
 import UserInfo from "../components/UserInfo";
 import { useFetch } from "../hooks/useFetch";
+import ErrorMsg from "../components/ErrorMsg";
 
-const BASE_URL = "https://api.github.com";
+const BASE_URL = "https://api.github.com/users";
 
 function Repositores({ className, url }) {
   const { data: repos, error } = useFetch(url);
 
   let content;
   if (error) {
-    content = <p className="error-msg">{error}</p>;
+    content = <ErrorMsg msg={error} />;
   } else if (repos) {
     if (repos.length === 0) {
-      content = `No${className === "stars" ? "starred " : ""} repositories.`;
+      content = `No${className === "stars" ? " starred" : ""} repositories.`;
     } else {
       content = (
         <>
@@ -34,53 +36,115 @@ function Repositores({ className, url }) {
   return <div className={className}>{content}</div>;
 }
 
-export default function UserPage() {
-  const { login } = useParams();
-  const { data: user, error } = useFetch(`${BASE_URL}/users/${login}`);
+function People({ className, url }) {
+  const { data: users, error } = useFetch(url);
 
   let content;
   if (error) {
-    content = <p className="error-msg">{error}</p>;
+    content = <ErrorMsg msg={error} />;
+  } else if (users) {
+    if (users.length === 0) {
+      content = className === "followers" ? "No followers." : "Not following anyone.";
+    } else {
+      content = (
+        <>
+          {users.map((user) => (
+            <UserCard key={user.id} user={user} />
+          ))}
+        </>
+      );
+    }
+  } else {
+    content = <Loader />;
+  }
+
+  return <div className={className}>{content}</div>;
+}
+
+function createTabs(user) {
+  return [
+    {
+      linkContent: (
+        <>
+          <Book /> Repositories
+        </>
+      ),
+      element: <Repositores className="repositories" url={user.repos_url} />,
+    },
+
+    {
+      linkContent: (
+        <>
+          <Users /> People
+        </>
+      ),
+      element: (
+        <Tabs
+          tabs={[
+            {
+              linkContent: "Followers",
+              element: <People className="followers" url={`${BASE_URL}/${user.login}/followers`} />,
+            },
+            {
+              linkContent: "Following",
+              element: <People className="following" url={`${BASE_URL}/${user.login}/following`} />,
+            },
+          ]}
+          centeredLinks
+        />
+      ),
+    },
+
+    {
+      linkContent: (
+        <>
+          <Star /> Stars
+        </>
+      ),
+      element: <Repositores className="stars" url={`${BASE_URL}/${user.login}/starred`} />,
+    },
+
+    {
+      linkContent: (
+        <>
+          <Layout /> Projects
+        </>
+      ),
+      element: (
+        <div className="projects">
+          <a href={`https://github.com/${user.login}?tab=projects`} target="_blank">
+            Visit GitHub
+          </a>
+        </div>
+      ),
+    },
+
+    {
+      linkContent: (
+        <>
+          <Package /> Packages
+        </>
+      ),
+      element: (
+        <div className="packages">
+          <a href={`https://github.com/${user.login}?tab=packages`} target="_blank">
+            Visit GitHub
+          </a>
+        </div>
+      ),
+    },
+  ];
+}
+
+export default function UserPage() {
+  const { login } = useParams();
+  const { data: user, error } = useFetch(`${BASE_URL}/${login}`);
+
+  let content;
+  if (error) {
+    content = <ErrorMsg msg={error} />;
   } else if (user) {
-    const tabs = [
-      {
-        linkContent: (
-          <>
-            <Book /> Repositories
-          </>
-        ),
-        element: <Repositores className="repositories" url={user.repos_url} />,
-      },
-      {
-        linkContent: (
-          <>
-            <Layout /> Projects
-          </>
-        ),
-        element: <div>Projects</div>,
-      },
-      {
-        linkContent: (
-          <>
-            <Package /> Packages
-          </>
-        ),
-        element: <div>Packages</div>,
-      },
-      {
-        linkContent: (
-          <>
-            <Star /> Stars
-          </>
-        ),
-        element: (
-          <Repositores
-            className="stars"
-            url={user.starred_url.slice(0, user.starred_url.indexOf("{"))}
-          />
-        ),
-      },
-    ];
+    const tabs = createTabs(user);
 
     content = (
       <>

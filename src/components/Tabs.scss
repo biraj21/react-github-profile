@@ -5,6 +5,10 @@
     display: flex;
     overflow: auto;
 
+    &--centered {
+      justify-content: center;
+    }
+
     a {
       padding: 8px 16px;
       border-radius: 6px 6px 0 0;
@@ -27,5 +31,9 @@
         margin-right: 6px;
       }
     }
+  }
+
+  .tab > * {
+    width: 100%;
   }
 }

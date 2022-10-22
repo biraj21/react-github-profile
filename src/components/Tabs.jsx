@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Tabs.scss";
 
-export default function Tabs({ tabs }) {
+export default function Tabs({ tabs, centeredLinks }) {
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
 
   function handleClick(e, tabIndex) {
@@ -13,7 +13,7 @@ export default function Tabs({ tabs }) {
 
   return (
     <div className="tabs">
-      <div className="tabs__links">
+      <div className={`tabs__links ${centeredLinks ? "tabs__links--centered" : ""}`}>
         {tabs.map((tab, i) => (
           <a
             href="#"
