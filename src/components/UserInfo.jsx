@@ -2,45 +2,48 @@ import "./UserInfo.scss";
 import { Link, MapPin, Twitter, Users } from "react-feather";
 
 export default function UserInfo({ user }) {
+  const { login, avatar_url, name, followers, following, bio, blog, location, twitter_username } =
+    user;
+
   return (
     <div className="user">
       <div className="avatar-names-wrapper">
-        <img src={user.avatar_url} alt="User's Avatar" className="user__avatar" />
+        <img src={avatar_url} alt="User's Avatar" className="user__avatar" />
         <div className="names-wrapper">
-          <span className="user__name">{user.name}</span>
-          <span className="user__login fg-disabled">{user.login}</span>
+          <span className="user__name">{name}</span>
+          <span className="user__login fg-disabled">{login}</span>
         </div>
       </div>
 
-      <p className="user__bio">{user.bio}</p>
+      <p className="user__bio">{bio}</p>
 
       <div className="user__connections">
         <Users />
-        {user.followers}&nbsp;<span className="fg-disabled">followers</span>&nbsp;&#183;&nbsp;
-        {user.following}&nbsp;<span className="fg-disabled">following</span>
+        {followers}&nbsp;<span className="fg-disabled">followers</span>&nbsp;&#183;&nbsp;
+        {following}&nbsp;<span className="fg-disabled">following</span>
       </div>
 
       <div className="user__other-details">
-        {user.location && (
+        {location && (
           <span>
-            <MapPin /> {user.location}
+            <MapPin /> {location}
           </span>
         )}
 
-        {user.blog && (
+        {blog && (
           <span>
             <Link />
-            <a href={user.blog} target="_blank">
-              {user.blog}
+            <a href={blog} target="_blank">
+              {blog}
             </a>
           </span>
         )}
 
-        {user.twitter_username && (
+        {twitter_username && (
           <span>
             <Twitter />
-            <a href={`https://twitter.com/${user.twitter_username}`} target="_blank">
-              @{user.twitter_username}
+            <a href={`https://twitter.com/${twitter_username}`} target="_blank">
+              @{twitter_username}
             </a>
           </span>
         )}

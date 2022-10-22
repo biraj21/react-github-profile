@@ -22,7 +22,6 @@ export function useFetch(url) {
         setError(null);
       })
       .catch((err) => {
-        console.log(err.message);
         if (err.name !== "AbortError") {
           setError(err.message);
         }

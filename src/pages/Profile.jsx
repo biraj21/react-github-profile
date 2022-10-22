@@ -22,15 +22,7 @@ function Repositores({ className, url }) {
       content = (
         <>
           {repos.map((repo) => (
-            <Repo
-              key={repo.name}
-              name={repo.name}
-              html_url={repo.html_url}
-              description={repo.description}
-              language={repo.language}
-              stargazers_count={repo.stargazers_count}
-              forks_count={repo.forks_count}
-            />
+            <Repo key={repo.name} repo={repo} />
           ))}
         </>
       );
