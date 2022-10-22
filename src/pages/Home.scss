@@ -1,0 +1,20 @@
+.home {
+  .wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+
+    label {
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      margin: 16px auto;
+    }
+  }
+}

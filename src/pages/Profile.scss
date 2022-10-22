@@ -7,7 +7,7 @@
   }
 
   .tabs {
-    flex-grow: 1;
+    width: calc(100% - 32px - 290px);
   }
 
   @media screen and (max-width: 767px) {
@@ -39,6 +39,10 @@
       &__bio {
         margin: 16px 0;
       }
+    }
+
+    .tabs {
+      width: 100%;
     }
   }
 }

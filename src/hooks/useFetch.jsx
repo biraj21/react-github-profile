@@ -15,13 +15,14 @@ export function useFetch(url) {
           return res.json();
         }
 
-        throw new Error(`${res.status}: ${res.statusText}`);
+        throw new Error(`Error: ${res.status}${res.statusText && " - " + res.statusText}`);
       })
       .then((data) => {
         setData(data);
         setError(null);
       })
       .catch((err) => {
+        console.log(err.message);
         if (err.name !== "AbortError") {
           setError(err.message);
         }

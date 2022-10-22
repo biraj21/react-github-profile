@@ -36,6 +36,47 @@ a {
   }
 }
 
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  padding: 5px;
+  background-color: #0d1117;
+  color: #fff;
+
+  &::placeholder {
+    color: #999;
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-blue);
+    border-color: transparent;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: var(--color-blue);
+  border: none;
+  border-radius: 5px;
+  font-family: var(--font);
+  color: var(--color-bg-default);
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-bg-default);
+    text-decoration: none;
+  }
+}
+
 .card {
   padding: 10px;
   border: 1px solid var(--color-border);
