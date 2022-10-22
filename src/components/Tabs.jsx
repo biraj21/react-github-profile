@@ -21,7 +21,7 @@ export default function Tabs({ tabs }) {
             className={i === currentTabIndex ? activeClassName : null}
             onClick={(e) => handleClick(e, i)}
           >
-            {tab.text}
+            {tab.linkContent}
           </a>
         ))}
       </div>

@@ -1,0 +1,30 @@
+.repo {
+  margin-bottom: 20px;
+  padding: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 a {
+    font-size: 20px;
+    color: var(--color-blue);
+  }
+
+  p {
+    margin: 10px 0;
+  }
+
+  div span {
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 12px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+      margin-right: 8px;
+    }
+  }
+}

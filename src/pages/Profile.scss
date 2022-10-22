@@ -6,6 +6,10 @@
     margin-right: 32px;
   }
 
+  .tabs {
+    flex-grow: 1;
+  }
+
   @media screen and (max-width: 767px) {
     padding-top: 16px !important;
     flex-direction: column;
