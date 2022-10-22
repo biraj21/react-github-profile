@@ -96,5 +96,5 @@ export default function UserPage() {
     content = <Loader />;
   }
 
-  return <div className="page user-page">{content}</div>;
+  return <div className="page profile">{content}</div>;
 }

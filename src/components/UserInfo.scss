@@ -51,7 +51,13 @@
 
     span {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+
+      a {
+        width: calc(100% - 14px - 10px);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
     }
   }
 }
