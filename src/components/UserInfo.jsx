@@ -8,7 +8,7 @@ export default function UserInfo({ user }) {
         <img src={user.avatarUrl} alt="User's Avatar" className="user__avatar" />
         <div className="names-wrapper">
           <span className="user__name">{user.name}</span>
-          <span className="user__id fg-disabled">{user.id}</span>
+          <span className="user__login fg-disabled">{user.login}</span>
         </div>
       </div>
 

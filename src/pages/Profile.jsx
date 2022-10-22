@@ -1,12 +1,49 @@
 import { Book, Layout, Package, Star } from "react-feather";
 import "./Profile.scss";
+import Loader from "../components/Loader";
 import Repo from "../components/Repo";
 import Tabs from "../components/Tabs";
 import UserInfo from "../components/UserInfo";
+import { useFetch } from "../hooks/useFetch";
+
+const BASE_URL = "https://api.github.com";
+
+function Repositores({ className, url }) {
+  const { data: repos, error } = useFetch(url);
+
+  let content;
+  if (error) {
+    content = <p className="error-msg">{error}</p>;
+  } else if (repos) {
+    content = (
+      <>
+        {repos.map((repo) => (
+          <Repo
+            key={repo.name}
+            name={repo.name}
+            html_url={repo.html_url}
+            description={repo.description}
+            language={repo.language}
+            stargazers_count={repo.stargazers_count}
+            forks_count={repo.forks_count}
+          />
+        ))}
+      </>
+    );
+  } else {
+    content = (
+      <h3 className="loading-msg">
+        <Loader />
+      </h3>
+    );
+  }
+
+  return <div className={className}>{content}</div>;
+}
 
 export default function UserPage() {
   const user = {
-    id: "biraj21",
+    login: "biraj21",
     name: "Biraj",
     avatarUrl: "https://avatars.githubusercontent.com/u/37879496?v=4",
     bio: "I like Anime, Chess, Deep Learning, Mathematics and Programming.",
@@ -15,6 +52,8 @@ export default function UserPage() {
     location: "Bangalore, Karnataka, India",
     link: "https://biraj21.netlify.app",
     twitter: "biraj21__",
+    repos_url: "https://api.github.com/users/biraj21/repos",
+    starred_url: "https://api.github.com/users/biraj21/starred{/owner}{/repo}",
   };
 
   const tabs = [
@@ -24,23 +63,7 @@ export default function UserPage() {
           <Book /> Repositories
         </>
       ),
-      element: (
-        <div className="repos">
-          {Array(10)
-            .fill(null)
-            .map((_, i) => (
-              <Repo
-                key={"array-visualizer" + i}
-                name="array-visualizer"
-                description="A simple tool that can be used to visualize multi-dimensional arrays."
-                html_url="https://github.com/biraj21/array-visualizer"
-                language="JavaScript"
-                stargazers_count="7"
-                fork_count="1"
-              />
-            ))}
-        </div>
-      ),
+      element: <Repositores className="repositories" url={user.repos_url} />,
     },
     {
       linkContent: (
@@ -65,20 +88,10 @@ export default function UserPage() {
         </>
       ),
       element: (
-        <div className="stars">
-          {Array(10)
-            .fill(null)
-            .map((_, i) => (
-              <Repo
-                key={"react_github_api" + i}
-                name="react_github_api"
-                html_url="https://github.com/biraj21/react_github_api"
-                language="JavaScript"
-                stargazers_count="0"
-                fork_count="0"
-              />
-            ))}
-        </div>
+        <Repositores
+          className="stars"
+          url={user.starred_url.slice(0, user.starred_url.indexOf("{"))}
+        />
       ),
     },
   ];

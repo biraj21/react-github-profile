@@ -8,7 +8,7 @@ export default function Repo({
   description,
   language,
   stargazers_count,
-  fork_count,
+  forks_count,
 }) {
   return (
     <div className="card repo">
@@ -28,7 +28,7 @@ export default function Repo({
           <Star /> {stargazers_count}
         </span>
         <span>
-          <ForkSvg /> {fork_count}
+          <ForkSvg /> {forks_count}
         </span>
       </div>
     </div>
