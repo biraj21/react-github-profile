@@ -21,21 +21,29 @@ export default function UserInfo({ user }) {
       </div>
 
       <div className="user__other-details">
-        <span>
-          <MapPin /> {user.location}
-        </span>
-        <span>
-          <Link />
-          <a href={user.blog} target="_blank">
-            {user.blog}
-          </a>
-        </span>
-        <span>
-          <Twitter />
-          <a href={`https://twitter.com/${user.twitter_username}`} target="_blank">
-            @{user.twitter_username}
-          </a>
-        </span>
+        {user.location && (
+          <span>
+            <MapPin /> {user.location}
+          </span>
+        )}
+
+        {user.blog && (
+          <span>
+            <Link />
+            <a href={user.blog} target="_blank">
+              {user.blog}
+            </a>
+          </span>
+        )}
+
+        {user.twitter_username && (
+          <span>
+            <Twitter />
+            <a href={`https://twitter.com/${user.twitter_username}`} target="_blank">
+              @{user.twitter_username}
+            </a>
+          </span>
+        )}
       </div>
     </div>
   );

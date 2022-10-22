@@ -16,21 +16,25 @@ function Repositores({ className, url }) {
   if (error) {
     content = <p className="error-msg">{error}</p>;
   } else if (repos) {
-    content = (
-      <>
-        {repos.map((repo) => (
-          <Repo
-            key={repo.name}
-            name={repo.name}
-            html_url={repo.html_url}
-            description={repo.description}
-            language={repo.language}
-            stargazers_count={repo.stargazers_count}
-            forks_count={repo.forks_count}
-          />
-        ))}
-      </>
-    );
+    if (repos.length === 0) {
+      content = `No${className === "stars" ? "starred " : ""} repositories.`;
+    } else {
+      content = (
+        <>
+          {repos.map((repo) => (
+            <Repo
+              key={repo.name}
+              name={repo.name}
+              html_url={repo.html_url}
+              description={repo.description}
+              language={repo.language}
+              stargazers_count={repo.stargazers_count}
+              forks_count={repo.forks_count}
+            />
+          ))}
+        </>
+      );
+    }
   } else {
     content = <Loader />;
   }
