@@ -11,6 +11,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/index.html" element={<Home />} />
           <Route path="/:login" element={<Profile />} />
         </Routes>
       </div>
