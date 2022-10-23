@@ -2,6 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  // customizing scrollbar for firefox
+  scrollbar-width: thin;
+  scrollbar-color: #666 var(--color-bg-hover);
 }
 
 :root {
@@ -19,6 +23,25 @@
   font-size: 16px;
   line-height: 24px;
   font-family: var(--font);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+// the scrollbar handle's container
+::-webkit-scrollbar-track {
+  background-color: var(--color-bg-hover);
+}
+
+// the scrollbar handle
+::-webkit-scrollbar-thumb {
+  background-color: #666;
+
+  &:hover {
+    background: #555;
+  }
 }
 
 body {

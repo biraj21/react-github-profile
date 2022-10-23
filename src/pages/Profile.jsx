@@ -62,11 +62,22 @@ function People({ className, url }) {
 }
 
 function createTabs(user) {
+  const peopleTabs = [
+    {
+      linkContent: `Followers (${user.followers})`,
+      element: <People className="followers" url={`${BASE_URL}/${user.login}/followers`} />,
+    },
+    {
+      linkContent: `Following (${user.following})`,
+      element: <People className="following" url={`${BASE_URL}/${user.login}/following`} />,
+    },
+  ];
+
   return [
     {
       linkContent: (
         <>
-          <Book /> Repositories
+          <Book /> Repositories ({user.public_repos})
         </>
       ),
       element: <Repositores className="repositories" url={user.repos_url} />,
@@ -78,21 +89,7 @@ function createTabs(user) {
           <Users /> People
         </>
       ),
-      element: (
-        <Tabs
-          tabs={[
-            {
-              linkContent: "Followers",
-              element: <People className="followers" url={`${BASE_URL}/${user.login}/followers`} />,
-            },
-            {
-              linkContent: "Following",
-              element: <People className="following" url={`${BASE_URL}/${user.login}/following`} />,
-            },
-          ]}
-          centeredLinks
-        />
-      ),
+      element: <Tabs tabs={peopleTabs} centeredLinks />,
     },
 
     {
