@@ -9,8 +9,6 @@ export default function Tabs({ tabs, centeredLinks }) {
     setCurrentTabIndex(tabIndex);
   }
 
-  const activeClassName = "tab-active";
-
   return (
     <div className="tabs">
       <div className={`tabs__links ${centeredLinks ? "tabs__links--centered" : ""}`}>
@@ -18,7 +16,7 @@ export default function Tabs({ tabs, centeredLinks }) {
           <a
             href="#"
             key={i}
-            className={i === currentTabIndex ? activeClassName : null}
+            className={i === currentTabIndex ? "tab-active" : null}
             onClick={(e) => handleClick(e, i)}
           >
             {tab.linkContent}
