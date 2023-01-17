@@ -16,12 +16,7 @@ export default function Home() {
       <div className="wrapper">
         <form onSubmit={handleSubmit}>
           <label>Username:</label>
-          <input
-            type="text"
-            placeholder="GitHub username"
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-          />
+          <input type="text" placeholder="GitHub username" value={login} onChange={(e) => setLogin(e.target.value)} />
           <button type="submit" className="btn">
             Search
           </button>
@@ -29,7 +24,7 @@ export default function Home() {
 
         <p>
           Alternatively, you can just add the username to the url like this:{" "}
-          <i>{new URL("biraj21", window.location.href).href}</i>
+          <b>{new URL("biraj21", window.location.href).href}</b>
         </p>
       </div>
     </div>

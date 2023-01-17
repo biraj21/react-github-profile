@@ -1,5 +1,12 @@
 import "./Loader.scss";
 
 export default function Loader() {
-  return <>Loading...</>;
+  return (
+    <div className="loader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  );
 }

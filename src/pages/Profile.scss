@@ -2,12 +2,22 @@
   padding-top: 24px !important;
   display: flex;
 
+  .loader {
+    display: block;
+    margin: 0 auto;
+  }
+
   .user {
     margin-right: 32px;
   }
 
   .tabs {
     width: calc(100% - 32px - 290px);
+
+    .tab > * > .loader {
+      display: block;
+      margin: 0 auto;
+    }
 
     .projects,
     .packages {
